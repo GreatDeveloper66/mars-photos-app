@@ -16,5 +16,12 @@
   "bugs": {
     "url": "https://github.com/GreatDeveloper66/mars-photos-app/issues"
   },
-  "homepage": "https://github.com/GreatDeveloper66/mars-photos-app#readme"
+  "homepage": "https://github.com/GreatDeveloper66/mars-photos-app#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.9.28"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
 }
