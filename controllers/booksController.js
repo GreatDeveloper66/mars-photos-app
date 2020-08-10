@@ -1,30 +1,34 @@
-const User = require('../models/Users')
+
+// booksControllers.js
+const Book = require('../models/Books');
+
+// Defining all methods and business logic for routes
 
 module.exports = {
-    findAll: function(req, res) {
-		User.find(req.query)
-			.then(users => res.json(users))
+	findAll: function(req, res) {
+		Book.find(req.query)
+			.then(books => res.json(books))
 			.catch(err => res.status(422).json(err));
 	},
 	findById: function(req, res) {
-		User.findById(req.params.id)
-			.then(user => res.json(user))
+		Book.findById(req.params.id)
+			.then(book => res.json(book))
 			.catch(err => res.status(422).json(err));
 	},
 	create: function(req, res) {
-		User.create(req.body)
-			.then(newUser => res.json(newUser))
+		Book.create(req.body)
+			.then(newBook => res.json(newBook))
 			.catch(err => res.status(422).json(err));
 	},
 	update: function(req, res) {
 		Book.findOneAndUpdate({ _id: req.params.id }, req.body)
-			.then(user => res.json(user))
+			.then(book => res.json(book))
 			.catch(err => res.status(422).json(err));
 	},
 	remove: function(req, res) {
 		Book.findById({ _id: req.params.id })
-			.then(user => user.remove())
-			.then(users => res.json(users))
+			.then(book => book.remove())
+			.then(allbooks => res.json(allbooks))
 			.catch(err => res.status(422).json(err));
 	}
-}
+};
