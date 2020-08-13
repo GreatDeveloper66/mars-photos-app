@@ -17,6 +17,7 @@ export default function Mars() {
     
     const handleSubmit = event => {
         event.preventDefault()
+        console.log(fetchURL)
         fetch(`${fetchURL}`)
             .then(resp => resp.json())
             .then(data => {
