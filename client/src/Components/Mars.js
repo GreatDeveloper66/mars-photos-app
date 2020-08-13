@@ -11,7 +11,6 @@ export default function Mars() {
     const handleChange = event => setCamera(event.target.value)
     const handleIncDec = event => setSol(event.target.value)
     const fetchURL = `${URL}/sol/${sol}/camera/${camera}`
-    console.log(fetchURL)
     const photos = () => Images.map(img => ({src: `${img}`, width: 1, height: 1}))
     const renderImages = () => <Gallery photos={photos()} />
         
