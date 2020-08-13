@@ -1,6 +1,6 @@
 
 // server.js
-const routes = require('./routes')
+//const routes = require('./routes')
 const path = require('path')
 const express = require('express');
 const app = express();
@@ -28,3 +28,4 @@ app.get('*', (req,res) => {
 app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}.`);
 });
+
