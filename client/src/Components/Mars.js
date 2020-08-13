@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Row, Container, Col, Form, Button, Image } from 'react-bootstrap'
 import { URL } from './EnvVars'
 import fetch from 'isomorphic-fetch'
+import Gallery from 'react-photo-gallery'
 
 export default function Mars() {
     const [ camera, setCamera ] = useState('FHAZ')
@@ -11,10 +12,8 @@ export default function Mars() {
     const handleIncDec = event => setSol(event.target.value)
     const fetchURL = `${URL}/sol/${sol}/camera/${camera}`
     console.log(fetchURL)
-    const renderImages = () => Images.map((img, index) => <Col xs={12} sm={6} md={4} lg={3} className="d-flex justify-content-center" key={index}>
-            <Image src={img} thumbnail />
-        </Col>)
-        
+    const photos = () => Images.map(img => ({src: `${img}`, width: 1, height: 1}))
+    const renderImages = () => <Gallery photos={photos()} />
         
     
     const handleSubmit = event => {
