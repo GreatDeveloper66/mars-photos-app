@@ -1,5 +1,5 @@
 require('dotenv').config()
-const [ URL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
+const [ URL, key ] = [ process.env.BASE_URL || `https://mars--photos--app.herokuapp.com`, process.env.MARS_API_KEY ]
 const fetch = require('isomorphic-fetch')
 const path = require('path')
 const express = require('express');
