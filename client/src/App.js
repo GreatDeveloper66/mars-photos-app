@@ -12,6 +12,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path ='/' component={ Mars } />
+        <Rout exact path = '/login' component = { Login }
       </Switch>
     </Router>
   );
