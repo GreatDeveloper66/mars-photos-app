@@ -8,6 +8,10 @@ export default function Login() {
             event.preventDefault()
             props.history.push('/')
         }
+        const handleSwitch = () => {
+            event.preventDefault()
+            props.history.push('/register')
+        }
         return (
             <Container>
                 <Row d-flex="justify-content-center">
@@ -36,7 +40,7 @@ export default function Login() {
 
                 <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 <p className="forgot-password text-right">
-                    Forgot <a onClick={() => props.history.push('/register')}>password?</a>
+                    Forgot <a onClick={handleSwitch}>password?</a>
                 </p>
             </form>
                     </Col>

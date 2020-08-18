@@ -9,6 +9,10 @@ export default function Register(){
         event.preventDefault()
         props.history.push('/')
     }
+    const handleSwitch = () => {
+        event.preventDefault()
+        props.history.push('/login')
+    }
     return (
         <Container>
             <Row d-flex="justify-content-center">
