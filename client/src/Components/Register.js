@@ -1,4 +1,5 @@
-import React, { Component, useState } from "react"  
+import React, { useState } from "react" 
+import { Container, Row, Col } from 'react-bootstrap' 
 import { URL } from './EnvVars'
 import fetch from 'isomorphic-fetch'
           
