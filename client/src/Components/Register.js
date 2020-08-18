@@ -1,4 +1,7 @@
-import React, { Component, useState } from "react"            
+import React, { Component, useState } from "react"  
+import { URL } from './EnvVars'
+import fetch from 'isomorphic-fetch'
+          
 export default function Register(){
     return (
         <form>
