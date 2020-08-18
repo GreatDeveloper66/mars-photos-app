@@ -5,7 +5,12 @@ import fetch from 'isomorphic-fetch'
 export default function Login() {
     
         return (
-            <form>
+            <Container>
+                <Row d-flex="justify-content-center">
+                    <Col>
+                    </Col>
+                    <Col xs={12} sm={4} lg={3} d-flex="justify-content-center">
+                    <form>
                 <h3>Sign In</h3>
 
                 <div className="form-group">
@@ -30,5 +35,10 @@ export default function Login() {
                     Forgot <a href="#">password?</a>
                 </p>
             </form>
-        );
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+            </Container>
+        )
 }
