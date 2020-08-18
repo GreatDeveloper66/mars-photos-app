@@ -4,14 +4,17 @@ import { URL } from './EnvVars'
 import fetch from 'isomorphic-fetch'
 
 export default function Login() {
-    
+        const handleSubmit = () => {
+            event.preventDefault()
+
+        }
         return (
             <Container>
                 <Row d-flex="justify-content-center">
                     <Col>
                     </Col>
                     <Col xs={12} sm={4} lg={3} d-flex="justify-content-center">
-                    <form onSubmit={() => props.history.push('/')}>
+                    <form onSubmit={handleSubmit()}>
                 <h3>Sign In</h3>
 
                 <div className="form-group">
