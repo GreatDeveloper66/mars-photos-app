@@ -33,7 +33,7 @@ export default function Login() {
 
                 <button type="submit" className="btn btn-primary btn-block">Submit</button>
                 <p className="forgot-password text-right">
-                    Forgot <a href="#">password?</a>
+                    Forgot <a onClick={() => props.history.push('/register')}>password?</a>
                 </p>
             </form>
                     </Col>
