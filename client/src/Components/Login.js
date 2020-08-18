@@ -3,12 +3,12 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { URL } from './EnvVars'
 import fetch from 'isomorphic-fetch'
 
-export default function Login() {
-        const handleSubmit = () => {
+export default function Login(props) {
+        const handleSubmit = event => {
             event.preventDefault()
             props.history.push('/')
         }
-        const handleSwitch = () => {
+        const handleSwitch = event => {
             event.preventDefault()
             props.history.push('/register')
         }

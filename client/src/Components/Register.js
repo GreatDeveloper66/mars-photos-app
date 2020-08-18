@@ -4,12 +4,12 @@ import { URL } from './EnvVars'
 import fetch from 'isomorphic-fetch'
 import { propTypes } from "react-bootstrap/esm/Image"
           
-export default function Register(){
-    const handleSubmit = () => {
+export default function Register(props){
+    const handleSubmit = event => {
         event.preventDefault()
         props.history.push('/')
     }
-    const handleSwitch = () => {
+    const handleSwitch = event => {
         event.preventDefault()
         props.history.push('/login')
     }
