@@ -5,13 +5,17 @@ import fetch from 'isomorphic-fetch'
 import { propTypes } from "react-bootstrap/esm/Image"
           
 export default function Register(){
+    const handleSubmit = () => {
+        event.preventDefault()
+        props.history.push('/')
+    }
     return (
         <Container>
             <Row d-flex="justify-content-center">
                 <Col>
                 </Col>
                 <Col xs={12} sm={4} lg={3} d-flex="justify-content-center">
-                <form onSubmit={() => props.history.push('/')}>
+                <form onSubmit={handleSubmit}>
                 <h3>Sign Up</h3>
 
                 <div className="form-group">
@@ -36,7 +40,7 @@ export default function Register(){
 
                 <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                 <p className="forgot-password text-right">
-                    Already registered <a onClick={() => props.history.push('/login')}>sign in?</a>
+                    Already registered <a onClick={handleSwitch}>sign in?</a>
                 </p>
             </form>
                 </Col>

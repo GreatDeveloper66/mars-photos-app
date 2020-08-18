@@ -6,7 +6,7 @@ import fetch from 'isomorphic-fetch'
 export default function Login() {
         const handleSubmit = () => {
             event.preventDefault()
-
+            props.history.push('/')
         }
         return (
             <Container>
@@ -14,7 +14,7 @@ export default function Login() {
                     <Col>
                     </Col>
                     <Col xs={12} sm={4} lg={3} d-flex="justify-content-center">
-                    <form onSubmit={handleSubmit()}>
+                    <form onSubmit={handleSubmit}>
                 <h3>Sign In</h3>
 
                 <div className="form-group">
