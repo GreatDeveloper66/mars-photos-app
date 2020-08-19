@@ -3,6 +3,9 @@ const [ URL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
 const fetch = require('isomorphic-fetch')
 const path = require('path')
 const express = require('express');
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const mongoose = require('mongoose')
 const app = express();
 
 const PORT = process.env.PORT || 5000;
