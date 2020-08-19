@@ -4,6 +4,7 @@ import { URL } from './EnvVars'
 import fetch from 'isomorphic-fetch'
 
 export default function Login(props) {
+        const fetchURL = `${URL}/login`
         const handleSubmit = event => {
             event.preventDefault()
             props.history.push('/')

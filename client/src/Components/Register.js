@@ -5,6 +5,7 @@ import fetch from 'isomorphic-fetch'
 import { propTypes } from "react-bootstrap/esm/Image"
           
 export default function Register(props){
+    const fetchURL = `${URL}/register`
     const handleSubmit = event => {
         event.preventDefault()
         props.history.push('/')
