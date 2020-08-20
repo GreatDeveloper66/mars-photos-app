@@ -4,15 +4,40 @@ import { URL } from './EnvVars'
 import fetch from 'isomorphic-fetch'
 
 export default function Login(props) {
+        const [ userName, setuserName ] = useState('')
+        const [ password, setPassword ] = useState('')
+
         const fetchURL = `${URL}/login`
         const handleSubmit = event => {
             event.preventDefault()
-            props.history.push('/')
+            const userObj = {
+                userName: userName,
+                password: password
+            }
+            console.log('userObj', userObj)
+            const configObj = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(userObj)
+            }
+            fetch(fetchURL, configObj)
+                .then(resp => resp.json())
+                .then(data => {
+                    console.log(data.json())
+                    props.history.push('/')
+                })
+                .catch(err => console.log(err))
         }
         const handleSwitch = event => {
             event.preventDefault()
             props.history.push('/register')
         }
+        const handleChangeUserName = event => {setuserName(event.target.value)}
+        const handleChangePassword = event => {setPassword(event.target.value)}
+
         return (
             <Container>
                 <Row d-flex="justify-content-center">
@@ -24,12 +49,14 @@ export default function Login(props) {
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input type="email" className="form-control" placeholder="Enter email" 
+                      value={userName} onChange={handleChangeUserName}/>
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input type="password" className="form-control" placeholder="Enter password" 
+                        value={password} onChange={handleChangePassword} />
                 </div>
 
                 <div className="form-group">
