@@ -17,8 +17,17 @@ export default function Register(props){
         const userObj = {
             firstName: firstName,
             lastName: lastName,
+            userName: userName,
             email: email,
             password: password
+        }
+        const configObj = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(userObj)
         }
         fetch(fetchURL, configObj)
             .then(resp => resp.json())
