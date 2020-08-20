@@ -35,22 +35,26 @@ export default function Register(props){
 
                 <div className="form-group">
                     <label>First name</label>
-                    <input type="text" className="form-control" placeholder="First name" />
+                    <input type="text" className="form-control" placeholder="First name" 
+                    value={ firstName } onChange={ handleChangeFirstName }/>
                 </div>
 
                 <div className="form-group">
                     <label>Last name</label>
-                    <input type="text" className="form-control" placeholder="Last name" />
+                    <input type="text" className="form-control" placeholder="Last name" 
+                    value={ lastName } onChange={ handleChangeLastName }/>
                 </div>
 
                 <div className="form-group">
                     <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
+                    <input type="email" className="form-control" placeholder="Enter email" 
+                    value={ email } onChange={ handleChangeEmail }/>
                 </div>
 
                 <div className="form-group">
                     <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
+                    <input type="password" className="form-control" placeholder="Enter password" 
+                    value={ password } onChange = { handleChangePassword }/>
                 </div>
 
                 <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
