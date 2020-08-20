@@ -6,6 +6,9 @@ import { propTypes } from "react-bootstrap/esm/Image"
           
 export default function Register(props){
     const fetchURL = `${URL}/register`
+    const [ userName, setuserName ] = useState('')
+    const [ password, setPassword ] = useState('')
+    
     const handleSubmit = event => {
         event.preventDefault()
         props.history.push('/')
@@ -14,6 +17,7 @@ export default function Register(props){
         event.preventDefault()
         props.history.push('/login')
     }
+   
     return (
         <Container>
             <Row d-flex="justify-content-center">
