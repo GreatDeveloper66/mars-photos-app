@@ -6,9 +6,11 @@ import { propTypes } from "react-bootstrap/esm/Image"
           
 export default function Register(props){
     const fetchURL = `${URL}/register`
-    const [ userName, setuserName ] = useState('')
+    const [ email, setEmail ] = useState('')
+    const [ firstName, setFirstName ] = useState('')
+    const [ lastName, setLastName ] = useState('')
     const [ password, setPassword ] = useState('')
-    
+
     const handleSubmit = event => {
         event.preventDefault()
         props.history.push('/')
@@ -17,6 +19,10 @@ export default function Register(props){
         event.preventDefault()
         props.history.push('/login')
     }
+    const handleChangeFirstName = event => {setFirstName(event.target.value)}
+    const handleChangeLastName = event => {setLastName(event.target.value)}
+    const handleChangePassword = event => {setPassword(event.target.value)}
+    const handleChangeEmail = event => {setEmail(event.target.value)}
    
     return (
         <Container>
