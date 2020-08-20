@@ -9,11 +9,24 @@ export default function Register(props){
     const [ email, setEmail ] = useState('')
     const [ firstName, setFirstName ] = useState('')
     const [ lastName, setLastName ] = useState('')
+    const [ userName, setUserName ] = useState('')
     const [ password, setPassword ] = useState('')
 
     const handleSubmit = event => {
         event.preventDefault()
-        props.history.push('/')
+        const userObj = {
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password
+        }
+        fetch(fetchURL, configObj)
+            .then(resp => resp.json())
+            .then(data => {
+                console.log(data)
+                props.history.push('/')
+            })
+            .catch(err => console.log(err))
     }
     const handleSwitch = event => {
         event.preventDefault()
@@ -21,6 +34,7 @@ export default function Register(props){
     }
     const handleChangeFirstName = event => {setFirstName(event.target.value)}
     const handleChangeLastName = event => {setLastName(event.target.value)}
+    const handleChangeUserName = event => {setUserName(event.target.value)}
     const handleChangePassword = event => {setPassword(event.target.value)}
     const handleChangeEmail = event => {setEmail(event.target.value)}
    
@@ -43,6 +57,12 @@ export default function Register(props){
                     <label>Last name</label>
                     <input type="text" className="form-control" placeholder="Last name" 
                     value={ lastName } onChange={ handleChangeLastName }/>
+                </div>
+
+                <div className="form-group">
+                    <label>username</label>
+                    <input type="text" className="form-control" placeholder="User Name" 
+                    value={ userName } onChange={ handleChangeUserName }/>
                 </div>
 
                 <div className="form-group">
