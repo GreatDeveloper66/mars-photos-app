@@ -8,6 +8,9 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const app = express();
 
+mongoose.Promise = Promise
+const dbUrl = process.env.DBURL
+
 const PORT = process.env.PORT || 5000;
 
 app.use(express.urlencoded({ extended: true }));
@@ -28,6 +31,8 @@ app.get('/sol/:sol/camera/:camera', (req,res) => {
 app.get('*', (req,res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"))
 })
+
+const mongoose
 
 app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}.`);
