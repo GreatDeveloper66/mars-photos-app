@@ -2,14 +2,22 @@ require('dotenv').config()
 const [ URL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
 const fetch = require('isomorphic-fetch')
 const path = require('path')
-const express = require('express');
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const mongoose = require('mongoose')
+const express = require('express')
+//const bodyParser = require('body-parser')
+//const cors = require('cors')
+//const mongoose = require('mongoose')
 const app = express();
-
-mongoose.Promise = Promise
-const dbUrl = process.env.DBURL
+const MongoClient = require('mongodb').MongoClient
+//mongoose.Promise = Promise
+const url = 'mongodb://127.0.0.1:27017'
+const dbName = 'mars-photos-app'
+MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+    if(err) return console.log(err)
+    db = client.db(dbName)
+    console.log(`Connected MongoDB: ${url}`)
+    console.log(`Database: ${dbName}`)
+})
+//const dbUrl = process.env.DBURL
 
 const PORT = process.env.PORT || 5000;
 
@@ -31,8 +39,6 @@ app.get('/sol/:sol/camera/:camera', (req,res) => {
 app.get('*', (req,res) => {
     res.sendFile(path.join(__dirname, "client", "build", "index.html"))
 })
-
-const mongoose
 
 app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}.`);
