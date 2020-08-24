@@ -1,7 +1,22 @@
+import User from '../models/Users.js'
+import bcrypt from 'bcrypt'
 
-// booksControllers.js
-const User = require('../models/Users')
 
+const createUser = (req, res) => {
+	let hash = bcrypt.hashSync(req.body.password, 10)
+	let newUser = new User({...req.body,password: hash})
+	newUser.save((err, User) => {
+		if(err) {
+			res.send(err)
+		}
+		else {
+			res.json(User)
+		}
+	})
+}
+
+export default createUser
+/*
 module.exports = {
 	create: function(req, res) {
 		User.create(req.body)
@@ -10,7 +25,7 @@ module.exports = {
 	}
 }
 
-/*
+
 
 module.exports = {
 	findAll: function(req, res) {
