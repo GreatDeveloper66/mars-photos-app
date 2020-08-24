@@ -13,7 +13,11 @@
     "type": "git",
     "url": "git+https://github.com/GreatDeveloper66/mars-photos-app.git"
   },
-  "keywords": ["mars photos","mars rover", "nasa api"],
+  "keywords": [
+    "mars photos",
+    "mars rover",
+    "nasa api"
+  ],
   "author": "",
   "license": "MIT",
   "bugs": {
@@ -34,9 +38,11 @@
     "mongoose": "^5.10.0"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "nodemon": "^2.0.4"
   },
   "engines": {
     "node": "12.18.1"
-  }
+  },
+  "type": "module"
 }
