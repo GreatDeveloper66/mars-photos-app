@@ -1,23 +1,19 @@
 require('dotenv').config()
-const [ URL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
+const [ marsURL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
 const fetch = require('isomorphic-fetch')
 const path = require('path')
 const express = require('express')
-//const bodyParser = require('body-parser')
-//const cors = require('cors')
-//const mongoose = require('mongoose')
 const app = express();
 const MongoClient = require('mongodb').MongoClient
-//mongoose.Promise = Promise
-const url = 'mongodb://127.0.0.1:27017'
+const mongoURL = 'mongodb://127.0.0.1:27017'
 const dbName = 'mars-photos-app'
-MongoClient.connect(url, { useNewUrlParser: true }, (err, client) => {
+MongoClient.connect(mongoURL, { useNewUrlParser: true }, (err, client) => {
     if(err) return console.log(err)
     db = client.db(dbName)
     console.log(`Connected MongoDB: ${url}`)
     console.log(`Database: ${dbName}`)
 })
-//const dbUrl = process.env.DBURL
+
 
 const PORT = process.env.PORT || 5000;
 
@@ -27,7 +23,7 @@ app.use(express.static(path.join(__dirname, "client","build")))
 
 app.get('/sol/:sol/camera/:camera', (req,res) => {
     const { sol, camera } = req.params
-    const fetchURL = `${URL}sol=${sol}&camera=${camera}&api_key=${key}`
+    const fetchURL = `${marsURL}sol=${sol}&camera=${camera}&api_key=${key}`
     console.log(fetchURL)
     fetch(fetchURL)
         .then(resp => resp.json())
@@ -44,3 +40,14 @@ app.listen(PORT, () => {
 	console.log(`Server listening on port ${PORT}.`);
 });
 
+
+
+
+
+
+
+//const bodyParser = require('body-parser')
+//const cors = require('cors')
+//const mongoose = require('mongoose')
+//mongoose.Promise = Promise
+//const dbUrl = process.env.DBURL
