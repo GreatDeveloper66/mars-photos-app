@@ -1,3 +1,5 @@
+MongoClient(mongoURL, )
+
 require('dotenv').config()
 const [ marsURL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
 const fetch = require('isomorphic-fetch')
@@ -7,7 +9,7 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient
 const mongoURL = 'mongodb://127.0.0.1:27017'
 const dbName = 'mars-photos-app'
-MongoClient.connect(mongoURL, { useNewUrlParser: true }, (err, client) => {
+MongoClient.connect(process.env.MONGODB_URI || mongoURL, { useNewUrlParser: true }, (err, client) => {
     if(err) return console.log(err)
     db = client.db(dbName)
     console.log(`Connected MongoDB: ${url}`)
