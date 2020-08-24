@@ -2,7 +2,6 @@ import React, { useState } from "react"
 import { Container, Row, Col } from 'react-bootstrap' 
 import { URL } from './EnvVars'
 import fetch from 'isomorphic-fetch'
-import { propTypes } from "react-bootstrap/esm/Image"
           
 export default function Register(props){
     const fetchURL = `${URL}/register`
@@ -11,31 +10,39 @@ export default function Register(props){
     const [ lastName, setLastName ] = useState('')
     const [ userName, setUserName ] = useState('')
     const [ password, setPassword ] = useState('')
+    const [ confirmPassword, setconfirmPassword ] = useState('')
+    const [ passwordMessage, setpasswordMessage ] = useState('')
 
     const handleSubmit = event => {
         event.preventDefault()
-        const userObj = {
-            firstName: firstName,
-            lastName: lastName,
-            userName: userName,
-            email: email,
-            password: password
+        if(password === confirmPassword){
+            const userObj = {
+                firstName: firstName,
+                lastName: lastName,
+                userName: userName,
+                email: email,
+                password: password
+            }
+            const configObj = {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(userObj)
+            }
+            fetch(fetchURL, configObj)
+                .then(resp => resp.json())
+                .then(data => {
+                    console.log(data)
+                    props.history.push('/')
+                })
+                .catch(err => console.log(err))
         }
-        const configObj = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            },
-            body: JSON.stringify(userObj)
+        else {
+            setpasswordMessage('Passwords in both fields must match')
         }
-        fetch(fetchURL, configObj)
-            .then(resp => resp.json())
-            .then(data => {
-                console.log(data)
-                props.history.push('/')
-            })
-            .catch(err => console.log(err))
+        
     }
     const handleSwitch = event => {
         event.preventDefault()
@@ -45,6 +52,7 @@ export default function Register(props){
     const handleChangeLastName = event => {setLastName(event.target.value)}
     const handleChangeUserName = event => {setUserName(event.target.value)}
     const handleChangePassword = event => {setPassword(event.target.value)}
+    const handleChangeConfirmPassword = event => {setconfirmPassword(event.target.value)}
     const handleChangeEmail = event => {setEmail(event.target.value)}
    
     return (
@@ -85,6 +93,11 @@ export default function Register(props){
                     <input type="password" className="form-control" placeholder="Enter password" 
                     value={ password } onChange = { handleChangePassword }/>
                 </div>
+                <div className="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" className="form-control" placeholder="Confirm password" 
+                    value={ confirmPassword } onChange = { handleChangeConfirmPassword }/>
+                </div>
 
                 <button type="submit" className="btn btn-primary btn-block">Sign Up</button>
                 <p className="forgot-password text-right">
@@ -94,6 +107,9 @@ export default function Register(props){
                 </Col>
                 <Col>
                 </Col>
+            </Row>
+            <Row d-flex="justify-content-center">
+                {passwordMessage}
             </Row>
         </Container>
         
