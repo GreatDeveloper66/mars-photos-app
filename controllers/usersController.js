@@ -3,7 +3,28 @@ import bcrypt from 'bcrypt'
 
 
 const createUser = (req, res) => {
-	let hash = bcrypt.hashSync(req.body.password, 10)
+	/*
+	let newhash = ''
+	bcrypt.genSalt(10, (err, salt) => {
+		if(err){
+			console.log(err)
+		}
+		else {
+			bcrypt.hash(req.body.password, salt, (err, hash) => {
+				if(err){
+					console.log(err)
+				}
+				else {
+					newhash = hash
+				}
+				
+			})
+		}
+	})
+	*/
+	let salt = bcrypt.genSaltSync(10)
+	let password = req.body.password
+	let hash = bcrypt.hashSync(password, salt)
 	let newUser = new User({...req.body,password: hash})
 	newUser.save((err, User) => {
 		if(err) {
