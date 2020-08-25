@@ -1,25 +1,27 @@
-//require('dotenv').config()
 import dotenv from 'dotenv'
 dotenv.config()
-const [ marsURL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
-//const fetch = require('isomorphic-fetch')
 import fetch from 'isomorphic-fetch'
-//const path = require('path')
 import path from 'path'
 import express from 'express'
-//const express = require('express')
-const app = express();
-//const MongoClient = require('mongodb').MongoClient
 import mongodb from 'mongodb'
+import bodyparser from 'body-parser'
+import routes from './routes/users.js'
+import exphbs from 'express-handlebars'
+import expressValidator from 'express-validator'
+import flash from 'connect-flash'
+import session from 'express-session'
+import passport from 'passport'
+var localStrategy = require('passport-local'), Strategy;
+
+
+
+const [ marsURL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
+const app = express();
 const MongoClient = mongodb.MongoClient
 const mongoURL = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017'
 const dbName = 'mars-photos-app'
 let db = null
-import bodyparser from 'body-parser'
-//import registerUserRoute from './routes/users'
-import routes from './routes/users.js'
-//const registerUserRoute = require('./routes/users')
-//console.log('routes', registerUserRoute)
+
 MongoClient.connect(mongoURL, { useNewUrlParser: true }, (err, client) => {
     if(err) return console.log(err)
     db = client.db(dbName)
