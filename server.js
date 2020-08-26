@@ -11,10 +11,10 @@ import expressValidator from 'express-validator'
 import flash from 'connect-flash'
 import session from 'express-session'
 import passport from 'passport'
-var localStrategy = require('passport-local'), Strategy;
+import passportlocal from 'passport-local'
 
 
-
+const localStrategy = passportLocal.Strategy
 const [ marsURL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
 const app = express();
 const MongoClient = mongodb.MongoClient
@@ -34,8 +34,9 @@ const PORT = process.env.PORT || 5000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//app.use(bodyparser.urlencoded({ extended: true }))
-//app.use(bodyparser.json())
+app.use(bodyparser.urlencoded({ extended: true }))
+app.use(bodyparser.json())
+app.use(cookieParser())
 app.use(express.static(path.join(path.resolve(), "client","build")))
 
 routes(app)
