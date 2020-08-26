@@ -11,10 +11,9 @@ import expressValidator from 'express-validator'
 import flash from 'connect-flash'
 import session from 'express-session'
 import passport from 'passport'
-import passportlocal from 'passport-local'
 
+let localStrategy = require('passport-local').Strategy
 
-const localStrategy = passportLocal.Strategy
 const [ marsURL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
 const app = express();
 const MongoClient = mongodb.MongoClient
@@ -38,7 +37,11 @@ app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 app.use(cookieParser())
 app.use(express.static(path.join(path.resolve(), "client","build")))
-
+app.use(session({
+    secret: 'secret',
+    saveUninitialized: true,
+    resave: true
+}))
 routes(app)
 
 app.get('/sol/:sol/camera/:camera', (req,res) => {
