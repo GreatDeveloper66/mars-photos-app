@@ -6,13 +6,13 @@ import express from 'express'
 import mongodb from 'mongodb'
 import bodyparser from 'body-parser'
 import routes from './routes/users.js'
-import exphbs from 'express-handlebars'
-import expressValidator from 'express-validator'
-import flash from 'connect-flash'
-import session from 'express-session'
-import passport from 'passport'
+//import exphbs from 'express-handlebars'
+//import expressValidator, { param } from 'express-validator'
+//import flash from 'connect-flash'
+//import session from 'express-session'
+//import passport from 'passport'
 
-let localStrategy = require('passport-local').Strategy
+//let localStrategy = require('passport-local').Strategy
 
 const [ marsURL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
 const app = express();
@@ -35,13 +35,42 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
-app.use(cookieParser())
+//app.use(cookieParser())
 app.use(express.static(path.join(path.resolve(), "client","build")))
-app.use(session({
-    secret: 'secret',
-    saveUninitialized: true,
-    resave: true
-}))
+//app.use(session({
+//    secret: 'secret',
+//    saveUninitialized: true,
+//    resave: true
+//}))
+
+//app.use(passport.initialize())
+//app.use(passport.session())
+
+//app.use(expressValidator({
+//    errorFormatter: function(param, msg, value){
+//        let namespace = param.split('.')
+//        , root = namespace.shift()
+//        , formParam = root;
+    
+//    while(namespace.length){
+//        formParam += '[' + namespace.shift() + ']'
+//    }
+//    return {
+//        param: formParam,
+//        msg: msg,
+//        value: value
+//    }
+//    }
+//}))
+
+//app.use(flash())
+
+//app.use(function(req,res,next) {
+//    res.locals.success_msg = req.flash('success_msg')
+//    res.locals.error_msg = req.flash('error_msg')
+//    res.locals.error = req.flash('error')
+//    next()
+//})
 routes(app)
 
 app.get('/sol/:sol/camera/:camera', (req,res) => {

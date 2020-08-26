@@ -1,5 +1,4 @@
 import User from '../models/Users.js'
-import bcrypt from 'bcrypt'
 
 
 const createUser = (req, res) => {
@@ -22,10 +21,8 @@ const createUser = (req, res) => {
 		}
 	})
 	*/
-	let salt = bcrypt.genSaltSync(10)
-	let password = req.body.password
-	let hash = bcrypt.hashSync(password, salt)
-	let newUser = new User({...req.body,password: hash})
+	
+	let newUser = new User(req.body)
 	newUser.save((err, User) => {
 		if(err) {
 			res.send(err)
