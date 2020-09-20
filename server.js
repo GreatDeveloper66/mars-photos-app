@@ -29,6 +29,12 @@ MongoClient.connect(mongoURL, { useNewUrlParser: true }, (err, client) => {
 })
 
 
+app.post('/register', (req,res) => {
+
+})
+
+
+
 const PORT = process.env.PORT || 5000;
 
 app.use(express.urlencoded({ extended: true }));
