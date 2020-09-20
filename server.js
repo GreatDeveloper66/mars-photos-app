@@ -16,17 +16,17 @@ import routes from './routes/users.js'
 
 const [ marsURL, key ] = [ process.env.BASE_URL, process.env.MARS_API_KEY ]
 const app = express();
-const MongoClient = mongodb.MongoClient
 const mongoURL = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017'
 const dbName = 'mars-photos-app'
 let db = null
-
+/*
 MongoClient.connect(mongoURL, { useNewUrlParser: true }, (err, client) => {
     if(err) return console.log(err)
     db = client.db(dbName)
     console.log(`Connected MongoDB: ${mongoURL}`)
     console.log(`Database: ${dbName}`)
 })
+*/
 
 
 app.post('/register', async (req,res) => {
@@ -38,6 +38,16 @@ app.post('/register', async (req,res) => {
         "email": req.body.email,
         "password": password
     }
+    mongodb.MongoClient.connect(mongoURL, { useNewUrlParser: true }, (err, client) => {
+            if(err) {
+              res.send(err)
+            }
+            else {
+              client.db(DATABASE).collection(COL).insertOne(userObj)
+              res.send('user saved')
+          }
+        })
+})
 })
 
 app.post('/login', (req,res) => {
