@@ -33,6 +33,10 @@ app.post('/register', (req,res) => {
 
 })
 
+app.post('/login', (req,res) => {
+    
+})
+
 
 
 const PORT = process.env.PORT || 5000;
