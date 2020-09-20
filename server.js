@@ -6,6 +6,7 @@ import express from 'express'
 import mongodb from 'mongodb'
 import bodyparser from 'body-parser'
 import routes from './routes/users.js'
+import bcrypt from 'bcryptjs'
 //import exphbs from 'express-handlebars'
 //import expressValidator, { param } from 'express-validator'
 //import flash from 'connect-flash'
@@ -30,7 +31,7 @@ MongoClient.connect(mongoURL, { useNewUrlParser: true }, (err, client) => {
 
 
 app.post('/register', async (req,res) => {
-    const password = await bcyrpt.hash(req.body.password, 10)
+    const password = await bcrypt.hash(req.body.password, 10)
     const userObj ={
         "userName": req.body.userName,
         "firstName": req.body.firstName,
