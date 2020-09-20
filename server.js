@@ -29,8 +29,15 @@ MongoClient.connect(mongoURL, { useNewUrlParser: true }, (err, client) => {
 })
 
 
-app.post('/register', (req,res) => {
-
+app.post('/register', async (req,res) => {
+    const password = await bcyrpt.hash(req.body.password, 10)
+    const userObj ={
+        "userName": req.body.userName,
+        "firstName": req.body.firstName,
+        "lastName": req.body.lastName,
+        "email": req.body.email,
+        "password": password
+    }
 })
 
 app.post('/login', (req,res) => {
